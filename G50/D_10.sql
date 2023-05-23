@@ -3,7 +3,7 @@ WITH VALID_REVIEWS AS (SELECT Business_Id, COUNT(*) Count FROM Reviews WHERE Use
         SELECT User_Id FROM (SELECT User_Id, COUNT(Friends_Id) Count FROM Friends GROUP BY USER_ID) WHERE COUNT > 2
         )
     ) GROUP BY BUSINESS_ID
-) SELECT NVL(SUM, 0) Review_Count, C.City_Name FROM Cities C LEFT OUTER JOIN
+) SELECT NVL(SUM, 0) Review_Count, C.City_Name FROM Cities C LEFT JOIN
     (SELECT City_Name, State_Name, SUM(COUNT) SUM FROM VALID_REVIEWS VR INNER JOIN
         (SELECT Business_Id, City_Name, State_Name FROM Business_Location) BL
         ON BL.Business_Id=VR.Business_Id GROUP BY City_Name, State_Name) CC
