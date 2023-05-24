@@ -6,7 +6,7 @@ FETCH FIRST 1 ROW ONLY;
 -- TODO If I understood correctly, shouldn't we only return the count column ?
 -- If that's the case I propose :) :
 
-SELECT MAX(numReviews) AS count
+SELECT MAX(numReviews)
 FROM (
     SELECT R.USER_ID, COUNT(DISTINCT R.BUSINESS_ID) AS numReviews
     FROM REVIEWS R
